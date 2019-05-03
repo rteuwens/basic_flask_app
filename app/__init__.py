@@ -22,7 +22,8 @@ def create_app(config_name):
         config_name {string} -- dictionary key for the app_config variab
     
     Returns:
-        object -- our app
+        object -- our app, with db, bcrypt, migrate, and login_manager 
+                                                    to-do: add flask-admin
     """
 
     # setting up the app
@@ -36,7 +37,7 @@ def create_app(config_name):
 
     # setting up the login manager
     login_manager.init_app(app)
-    login_manager.login_message = 'You must be logged in to access this page.'
+    login_manager.login_message = 'Please log in to access this page.'
     login_manager.login_view = 'auth.login'
 
     # our table structures
