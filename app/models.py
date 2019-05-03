@@ -9,7 +9,6 @@ from app import db, login_manager, bcrypt
 class User(UserMixin, db.Model):
 
     """ table structure for the app's users
-    
         based on patterns found on: http://exploreflask.com/en/latest/users.html
     """
 
@@ -29,6 +28,8 @@ class User(UserMixin, db.Model):
 
     @password.setter
     def _set_password(self, plaintext):
+        # In Python 3, you need to use decode(‘utf-8’) on generate_password_hash() 
+        # https://flask-bcrypt.readthedocs.io/en/latest/
         self._password = bcrypt.generate_password_hash(plaintext).decode('utf-8')
     
     def is_correct_password(self, plaintext):

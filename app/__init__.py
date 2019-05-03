@@ -42,6 +42,12 @@ def create_app(config_name):
     # our table structures
     from app import models
 
+    """
+        To create the table structures, one would usually open a python ide and command "from app import db", then "db.create_all()"
+        In the case of an application factory, however, we opt for flask-migrate and its command line options such as "flask db init", 
+        Commands can be found on: https://flask-migrate.readthedocs.io/en/latest/
+    """
+
     # bellw code can be used if you want to force creation of the tables. We will use flask-migrate's "flask db init" and other commands instead.
     # with app.app_context():
     #     db.create_all()
