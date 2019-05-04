@@ -27,7 +27,7 @@ def create_app(config_name):
     # setting up the app
     app = Flask(__name__)
     app.config.from_object(app_config[config_name])
-
+    
     # initializing extensions
     db.init_app(app)
     bcrypt.init_app(app)
@@ -72,12 +72,10 @@ def load_blueprints(app):
     # importing them from their respective folders
     from .landing_page import landing
     from .dashboard import dash 
-    from .auth import auth 
     
     # registering them
     app.register_blueprint(landing)
     app.register_blueprint(dash)
-    app.register_blueprint(auth, url_prefix='/auth')
 
     # delivering the application with registered blueprints
     return app
