@@ -3,7 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
-from flask_login import LoginManager
+from flask_user import UserManager
 
 # local imports
 from config import app_config # used in the application factory
@@ -12,8 +12,6 @@ from config import app_config # used in the application factory
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 migrate = Migrate()
-login_manager = LoginManager()
-
 
 def create_app(config_name):
     """ designing the application factory
@@ -35,23 +33,24 @@ def create_app(config_name):
     bcrypt.init_app(app)
     migrate.init_app(app, db)
 
-    # setting up the login manager
-    login_manager.init_app(app)
-    login_manager.login_message = 'Please log in to access this page.'
-    login_manager.login_view = 'auth.login'
-
     # our table structures
-    from app import models
+    from app import models # refers to the classes for our database inside models.py
+    from app.models import User
 
     """
         To create the table structures, one would usually open a python ide and command "from app import db", then "db.create_all()"
-        In the case of an application factory, however, we opt for flask-migrate and its command line options such as "flask db init", 
+        In the case of an application factory, however, this isn't possible and we instead opt for flask-migrate 
+        and its command line options such as "flask db init".
+        
         Commands can be found on: https://flask-migrate.readthedocs.io/en/latest/
     """
 
     # bellw code can be used if you want to force creation of the tables. We will use flask-migrate's "flask db init" and other commands instead.
     # with app.app_context():
     #     db.create_all()
+
+    # Setup Flask-User and specify the User data-model
+    user_manager = UserManager(app, db, User)
 
     # importing and registering blueprints
     load_blueprints(app)
@@ -72,10 +71,12 @@ def load_blueprints(app):
 
     # importing them from their respective folders
     from .landing_page import landing
+    from .dashboard import dash 
     from .auth import auth 
-
+    
     # registering them
     app.register_blueprint(landing)
+    app.register_blueprint(dash)
     app.register_blueprint(auth, url_prefix='/auth')
 
     # delivering the application with registered blueprints

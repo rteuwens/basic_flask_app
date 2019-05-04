@@ -7,4 +7,4 @@ from . import landing # refers to /landing_page/__init__.py
 # views
 @landing.route('/')
 def home():
-    return redirect(url_for('auth.login'))
+    return 'hello world' #redirect(url_for('auth.login'))

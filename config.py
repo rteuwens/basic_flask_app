@@ -10,6 +10,15 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     BCRYPT_LOG_ROUNDS = 12 # http://exploreflask.com/en/latest/users.html
 
+    # Flask-User settings
+    USER_APP_NAME = 'Ivenoak'               # Shown in and email templates and page footers
+    USER_ENABLE_EMAIL = False               # Disable email authentication
+    USER_ENABLE_USERNAME = True             # Enable username authentication
+    USER_REQUIRE_RETYPE_PASSWORD = False    # Simplify register form
+
+    # Encryption
+    SECRET_KEY = 'thisisasecret'
+
 class DevelopmentConfig(Config):
     """
     Development configurations
@@ -20,7 +29,7 @@ class DevelopmentConfig(Config):
 
     # setting parameters
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = f"mysql://root:admin@localhost/{localhost_dbname}"
+    SQLALCHEMY_DATABASE_URI = f'mysql://root:admin@localhost/{localhost_dbname}'
 
 class ProductionConfig(Config):
     """
@@ -36,7 +45,7 @@ class ProductionConfig(Config):
     
     # setting parameters
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = f"mysql://{username}:{password}@{hostname}:{port}/{dbname}"
+    SQLALCHEMY_DATABASE_URI = f'mysql://{username}:{password}@{hostname}:{port}/{dbname}'
 
 # The variable we import in run.py
 app_config = {
