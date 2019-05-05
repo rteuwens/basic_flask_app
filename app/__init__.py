@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 from flask_user import UserManager
 
 # local imports
+import os, datetime
 from config import app_config # used in the application factory
 
 # initializing extensions
@@ -30,12 +31,11 @@ def create_app(config_name):
     
     # initializing extensions
     db.init_app(app)
-    bcrypt.init_app(app)
+    #bcrypt.init_app(app)
     migrate.init_app(app, db)
 
     # our table structures
-    from app import models # refers to the classes for our database inside models.py
-    from app.models import User
+    from app.models import User, Role, UserRoles  # refers to the classes for our database inside models.py
 
     """
         To create the table structures, one would usually open a python ide and command "from app import db", then "db.create_all()"
@@ -51,6 +51,21 @@ def create_app(config_name):
 
     # Setup Flask-User and specify the User data-model
     user_manager = UserManager(app, db, User)
+
+    # Create an administrator profile 
+    # https://github.com/lingthio/Flask-User/blob/master/example_apps/basic_app.py
+    with app.app_context():
+        if not User.query.filter(User.email == 'admin@ivenoak.com').first():
+            password = os.environ.get('MYSQL_PASSWORD')
+            user = User(
+                username='administrator',
+                email='admin@ivenoak.com',
+                email_confirmed_at=datetime.datetime.utcnow(),
+                password=user_manager.hash_password(password),
+            )
+            user.roles.append(Role(name='admin'))
+            db.session.add(user)
+            db.session.commit()
 
     # importing and registering blueprints
     load_blueprints(app)
