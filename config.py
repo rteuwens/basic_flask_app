@@ -8,16 +8,26 @@ class Config(object):
 
     # Put any configurations here that are common across all environments
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    BCRYPT_LOG_ROUNDS = 12 # http://exploreflask.com/en/latest/users.html
-
-    # Flask-User settings
-    USER_APP_NAME = 'Ivenoak'               # Shown in and email templates and page footers
-    USER_ENABLE_EMAIL = False               # Disable email authentication
-    USER_ENABLE_USERNAME = True             # Enable username authentication
-    USER_REQUIRE_RETYPE_PASSWORD = False    # Simplify register form
+    # BCRYPT_LOG_ROUNDS = 12 # http://exploreflask.com/en/latest/users.html
 
     # Encryption
     SECRET_KEY = 'thisisasecret'
+
+    # Flask-Mail SMTP server settings
+    MAIL_SERVER = os.environ.get('SMTP_HOST')
+    MAIL_PORT = os.environ.get('SMTP_PORT')
+    MAIL_USE_SSL = False
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = os.environ.get('SMTP_USER')
+    MAIL_PASSWORD = os.environ.get('SMTP_PASSWORD')
+    MAIL_DEFAULT_SENDER = os.environ.get('SMTP_USER')
+
+    # Flask-User settings
+    USER_APP_NAME = 'Ivenoak'       # Shown in and email templates and page footers
+    USER_ENABLE_EMAIL = True        # Enable email authentication
+    USER_ENABLE_USERNAME = True     # Disable username authentication
+    USER_EMAIL_SENDER_NAME = USER_APP_NAME
+    USER_EMAIL_SENDER_EMAIL = os.environ.get('SMTP_USER')
 
 class DevelopmentConfig(Config):
     """

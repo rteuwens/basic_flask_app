@@ -1,7 +1,6 @@
 # third-party imports
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_user import UserManager
 
@@ -11,7 +10,6 @@ from config import app_config # used in the application factory
 
 # initializing extensions
 db = SQLAlchemy()
-bcrypt = Bcrypt()
 migrate = Migrate()
 
 def create_app(config_name):
@@ -31,7 +29,6 @@ def create_app(config_name):
     
     # initializing extensions
     db.init_app(app)
-    #bcrypt.init_app(app)
     migrate.init_app(app, db)
 
     # our table structures
