@@ -1,4 +1,6 @@
 # folders to ignore
 ivenoak/
 __pycache__/
+.vscode/
 migrations/
+
