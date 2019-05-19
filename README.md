@@ -28,9 +28,13 @@ Then cd to the directory where requirements.txt is located and run:
 pip install -r requirements.txt
 ```
 
-NOTE: you might run into an error when installing mysqlclient. It will complain about needing Visual Studio 14.0.
-This is an extremely annoying bug and I was not able to resolve it using the suggestions. 
+NOTE: you might run into an error when installing mysqlclient. It will complain about needing Visual Studio 14.0. <br>
+This is an extremely annoying bug and I was not able to resolve it using the suggestions. <br>
 Instead, just download the wheel from https://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient and pip install it manually.
+In my case, it was:
+```sh
+pip install <nameofenv>/mysqlclient-1.4.2-cp37-cp37m-win32.whl
+```
 
 #### Configuring the application 
 It is currently set up to link to a MySQL database in the back-end, but you can configure this to any other relational database in config.py by changing the URI.
