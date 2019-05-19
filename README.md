@@ -20,8 +20,8 @@ I use virtualenv and write the following in a bash terminal:
 ```sh
      pip install virtualenv 
      virtualenv <nameofenv>
-iOS: source /<nameofenv>/bin/activate
-Win: source /<nameofenv>/Scripts/activate
+iOS: source <nameofenv>/bin/activate
+Win: source <nameofenv>/Scripts/activate
 ```
 Then cd to the directory where requirements.txt is located and run:
 ```sh
