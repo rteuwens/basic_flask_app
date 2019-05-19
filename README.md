@@ -1,11 +1,12 @@
 ## A basic Flask Application
 This template Flask application uses 
-  - Blueprints      : to modularize our app
-  - SQLalchemy      : for object relational mapping. Manage the db with Python
-  - Flask-Migrate   : automate the db maintenance whenever the schema is changed
-  - Flask-User      : a fantastic, fully functional login system which includes user roles
+  - Blueprints -----: to modularize our app
+  - SQLalchemy -----: for object relational mapping. Manage the db with Python
+  - Flask-Migrate --: automate the db maintenance whenever the schema is changed
+  - Flask-User -----: a fantastic, fully functional login system which includes user roles
 
-I'm keeping a copy here since it's the perfect starting point to actually start building an application. Others are welcome to use it.
+I'm keeping a copy here since it's the perfect starting point to actually start building an application. <br>
+Others are welcome to use it.
 
 #### Getting started
 Make a new folder and clone the repository
@@ -15,7 +16,7 @@ cd basic_flask_app
 ```
 
 #### Virtual Environment & Requirements
-Create a virtual environment and activate it. 
+Create a virtual environment and activate it. <br>
 I use virtualenv and write the following in a bash terminal:
 ```sh
      pip install virtualenv 
@@ -37,14 +38,16 @@ pip install <nameofenv>/mysqlclient-1.4.2-cp37-cp37m-win32.whl
 ```
 
 #### Configuring the application 
-It is currently set up to link to a MySQL database in the back-end, but you can configure this to any other relational database in config.py by changing the URI.
+It is currently set up to link to a MySQL database in the back-end, but you can configure this <br> 
+to any other relational database in config.py by changing the URI. <br>
 Whatever you choose, make sure the database exists. For MySQL, the command is simply:
 ```mysql
 Enter password: <yourpassword>
 CREATE DATABASE <yourdbname>;
 USE <yourdbname>;
 ```
-Make sure your env variables are set (reboot might be needed). If your auth for your localhost's mysql isn't simply root:admin, don't forget to change the URI.
+Make sure your env variables are set (reboot might be needed). <br>
+If your auth for your localhost's mysql isn't simply root:admin, don't forget to change the URI.
 ```python
 """ dev/localhost config """
     # fetching from user environment variables
@@ -85,10 +88,10 @@ flask run
 ```
 
 # Happy building!
-I was stuck in tutorial purgatory for a while, so hopefully this provides you with the foundation to quickly get 
-to work with your web application using Flask, without having to worry about integrating login systems, etc.
+I was stuck in tutorial purgatory for a while, so hopefully this provides you with the foundation to quickly get <br>
+to work with your web application using Flask, without having to worry about integrating login systems, etc. <br>
 Leverage the modularity of the Blueprints and make your own routes. 
 
-To further customize Flask-User's templates, consult: https://flask-user.readthedocs.io/en/latest/customizing_forms.html
+To further customize Flask-User's templates, consult: https://flask-user.readthedocs.io/en/latest/customizing_forms.html <br>
 I've left an example of how I edited the main login page, that should give you a clue as to how to proceed.
 
