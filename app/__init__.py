@@ -41,7 +41,9 @@ def create_app(config_name):
         Commands can be found on: https://flask-migrate.readthedocs.io/en/latest/
     """
 
-    # bellw code can be used if you want to force creation of the tables. We will use flask-migrate's "flask db init, migrate, and upgrade", respectively.
+    # below code can be used if you want to force creation of the tables. 
+    # We will instead use flask-migrate's "flask db init, migrate, and upgrade", respectively.
+    #
     # with app.app_context():
     #     db.create_all()
 
