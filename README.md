@@ -11,6 +11,7 @@ I'm keeping a copy here since it's the perfect starting point to actually start 
 Make a new folder and clone the repository
 ```git
 git clone git@github.com:rteuwens/basic_flask_app.git
+cd basic_flask_app
 ```
 
 #### Virtual Environment & Requirements
