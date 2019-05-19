@@ -20,7 +20,6 @@ def create_app(config_name):
     
     Returns:
         object -- our app, with db, bcrypt, migrate, and login_manager 
-                                                    to-do: add flask-admin
     """
 
     # setting up the app
