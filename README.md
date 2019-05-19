@@ -1,9 +1,9 @@
 ## A basic Flask Application
 This template Flask application uses 
-  - Blueprints    : to modularize our app
-  - SQLalchemy    : for object relational mapping. Manage the db with Python
-  - Flask-Migrate : automate the db maintenance whenever the schema is changed
-  - Flask-User    : a fantastic, fully functional login system which includes user roles
+  - Blueprints      : to modularize our app
+  - SQLalchemy      : for object relational mapping. Manage the db with Python
+  - Flask-Migrate   : automate the db maintenance whenever the schema is changed
+  - Flask-User      : a fantastic, fully functional login system which includes user roles
 
 I'm keeping a copy here since it's the perfect starting point to actually start building an application. Others are welcome to use it.
 
