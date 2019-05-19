@@ -35,22 +35,17 @@ def create_app(config_name):
 
     """
         To create the table structures, one would usually open a python ide and command "from app import db", then "db.create_all()"
-        In the case of an application factory, however, this isn't possible and we instead opt for flask-migrate 
-        and its command line options such as "flask db init".
+        In the case of an application factory, however, this is a bit trickier because you need the app_context. You also 
+        don't want to run the command every time you launch the app. Instead, we integrate it in a try-except clause, so it should only run once.
+        For all the other database functionality, we opt for flask-migrate and its command line options such as "flask db init".
         
         Commands can be found on: https://flask-migrate.readthedocs.io/en/latest/
     """
 
-    # below code can be used if you want to force creation of the tables. 
-    # We will instead use flask-migrate's "flask db init, migrate, and upgrade", respectively.
-    #
-    # with app.app_context():
-    #     db.create_all()
-
     # Setup Flask-User and specify the User data-model
     user_manager = UserManager(app, db, User)
 
-    # Create an administrator profile 
+    # Create an administrator profile if the tables exists. If the query fails, create_all.
     # https://github.com/lingthio/Flask-User/blob/master/example_apps/basic_app.py
     with app.app_context():
         try:
