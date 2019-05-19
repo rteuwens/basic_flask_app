@@ -23,9 +23,9 @@ class Config(object):
     MAIL_DEFAULT_SENDER = os.environ.get('SMTP_USER')
 
     # Flask-User settings
-    USER_APP_NAME = 'Ivenoak'       # Shown in and email templates and page footers
-    USER_ENABLE_EMAIL = True        # Enable email authentication
-    USER_ENABLE_USERNAME = True     # Username authentication
+    USER_APP_NAME = 'Your application name' # Shown in and email templates and page footers
+    USER_ENABLE_EMAIL = True                # Enable email authentication
+    USER_ENABLE_USERNAME = True             # Username authentication
     USER_EMAIL_SENDER_NAME = USER_APP_NAME
     USER_EMAIL_SENDER_EMAIL = os.environ.get('SMTP_USER')
     USER_AFTER_LOGIN_ENDPOINT = 'dash.welcome_back'
