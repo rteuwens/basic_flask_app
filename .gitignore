@@ -3,4 +3,5 @@ ivenoak/
 __pycache__/
 .vscode/
 migrations/
+migration/
 

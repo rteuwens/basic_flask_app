@@ -53,17 +53,20 @@ def create_app(config_name):
     # Create an administrator profile 
     # https://github.com/lingthio/Flask-User/blob/master/example_apps/basic_app.py
     with app.app_context():
-        if not User.query.filter(User.email == 'admin@ivenoak.com').first():
-            password = os.environ.get('MYSQL_PASSWORD')
-            user = User(
-                username='administrator',
-                email='admin@ivenoak.com',
-                email_confirmed_at=datetime.datetime.now(),
-                password=user_manager.hash_password(password),
-            )
-            user.roles.append(Role(name='admin'))
-            db.session.add(user)
-            db.session.commit()
+        try:
+            if not User.query.filter(User.email == 'user@example.com').first():
+                password = os.environ.get('MYSQL_PASSWORD')
+                user = User(
+                    username='administrator',
+                    email='user@example.com',
+                    email_confirmed_at=datetime.datetime.now(),
+                    password=user_manager.hash_password(password),
+                )
+                user.roles.append(Role(name='admin'))
+                db.session.add(user)
+                db.session.commit()
+        except:
+            db.create_all()
 
     # importing and registering blueprints
     load_blueprints(app)
